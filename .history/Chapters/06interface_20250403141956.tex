@@ -1,0 +1,38 @@
+\chapter{Image Deblurring NN} \label{chap:Time}
+
+In real world applications, the images are often blurred due to, mainly, out-of-focus camera.
+For the calibration algorithm, a minimum image quality is required to estimate the camera parameters.
+To improve the image quality, we can use a deblurring algorithm. In this chapter, we will discuss the deblurring algorithm and 
+its implementation using a neural network.
+
+\section{Dataset}
+
+The dataset used for training the neural network is a set of blurred images and their corresponding sharp images. 
+These images were obtained using blender, since its able to recreate accurate images of an out-of-focus camera.
+Using a python script generated xxxx set of blurred and the corresponding sharp images. Each image consists of a red chessboard square 
+with random size, position and aspect ratio with a random studio in the background.
+
+\section{Deblurring using EDSR}
+
+For the deblurring task, we used the Enhanced Deep Super-Resolution (EDSR) network, originally designed for single-image 
+super-resolution. Although EDSR was developed to upscale low-resolution images to high-resolution outputs, it has been shown to 
+be effective for image restoration tasks such as deblurring.
+
+EDSR is a deep convolutional neural network that removes unnecessary modules, such as batch normalization layers, from its 
+predecessor models (e.g., SRResNet) to improve performance. It consists of multiple residual blocks without downsampling, enabling the network 
+to maintain spatial information and focus on learning fine details.
+
+In our case, the input to the EDSR network is a blurred image, and the output is its deblurred (sharpened) version. The network is trained to 
+minimize the pixel-wise loss between the predicted deblurred image and the ground truth sharp image.
+
+By using EDSR, we benefit from a powerful architecture capable of restoring image details that were lost due to blur, thus enabling better 
+performance in downstream tasks such as camera calibration.
+
+However, since the images we will be using are very blured, simply using EDSR will not be enough. To tackle this problem,
+the algorithm is trained to focus on debluring the chessboard square, which is the only area of interest in the image, giving
+little value to the rest of the image. 
+
+This is done by recording the corners coordinates of the chessboard square in the training dataset. By applying a crop on the image blured and 
+sharp images. By using the MSELoss function, the algorithm will learn to deblur the chessboard square. In order to not ignore completely
+the rest of the image, the algorithm also learns to deblur the rest of the image, but with a lower weight. This is done
+by multiplying the MSELoss score of the chessboard square 0.9, and the rest of the image by 0.1 and then adding both.

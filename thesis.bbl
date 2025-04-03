@@ -1,0 +1,48 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[GeeksforGeeks(2023)]{geeksforgeeks_canny}
+GeeksforGeeks.
+\newblock \href {https://www.geeksforgeeks.org/python-opencv-canny-function/}
+  {Opencv contour approximation}, 2023.
+
+\bibitem[Stevens et~al.(2003)Stevens, Fenner, and Rudoff]{stevens2003unix}
+W.~Richard Stevens, Bill Fenner, and Andrew~M. Rudoff.
+\newblock \emph{UNIX Network Programming, Volume 1: The Sockets Networking
+  API}.
+\newblock Addison-Wesley Professional, 2003.
+
+\bibitem[Silberschatz et~al.(2018)Silberschatz, Galvin, and
+  Gagne]{silberschatz2018os}
+Abraham Silberschatz, Peter~B. Galvin, and Greg Gagne.
+\newblock \emph{Operating System Concepts}.
+\newblock Wiley, 2018.
+
+\bibitem[Jorgensen(2023)]{beejGuide}
+Beej Jorgensen.
+\newblock \href {https://beej.us/guide/bgnet/} {Beej's guide to network
+  programming}, 2023.
+
+\bibitem[Foundation(2023)]{pythonDocsSocket}
+Python~Software Foundation.
+\newblock \href {https://docs.python.org/3/library/socket.html} {socket —
+  low-level networking interface}, 2023.
+
+\bibitem[Documentation(2023)]{opencv_canny}
+OpenCV Documentation.
+\newblock \href {https://docs.opencv.org/3.4/da/d22/tutorial_py_canny.html}
+  {Canny edge detection}, 2023.
+
+\bibitem[pyimagesearch.(2021)]{contour_approximation}
+pyimagesearch.
+\newblock \href
+  {https://pyimagesearch.com/2021/10/06/opencv-contour-approximation/} {Python
+  | opencv canny function}, 2021.
+
+\bibitem[OpenCV()]{contour}
+OpenCV.
+\newblock \href
+  {https://docs.opencv.org/4.x/dc/dcf/tutorial_js_contour_features.html}
+  {Contour features}.
+
+\end{thebibliography}

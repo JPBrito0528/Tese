@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pedro Brandão's trial to get a template for thesis for students
+% Used the upthesis from Fernando Silva (see upthesis).
+% See also the packages file.
+% 2014/07/07 First draft
+% 2014/07/21 
+%  pbrandao: added the list of listings (it should produce portuguese name if
+%           babel is set to portuguese, see packages.tex). Changed usepackage of babel
+%           to be before input packages.tex to allow test
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% makes all pages the height of the text on that page. No extra vertical space is added.
+\raggedbottom 
+% setting it to report will remove the blank pages before each chapter
+\documentclass[11pt,a4paper,twoside]{book}
+
+\usepackage[numbers,sort&compress]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Packages that need to be configured for the thesis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Language settings
+% use UKenglish for UK or leave blank for US English
+% it will also change the names for some of the chapters (list of tables, figures, content,
+\usepackage[UKenglish]{babel}
+%\usepackage[portuguese]{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Packages uses language definitions
+% see file below for more packages and settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{upthesis}
+\usepackage{tablefootnote}
+
+\usepackage{epigraph, varwidth}
+
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+\usepackage{subcaption}
+
+
+\usepackage{array} % For better column formatting
+\usepackage{ragged2e} % For text wrapping
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage[
+%backref={section},
+%pagebackref, % for getting references to the page where the citation is (in the biblio)
+pdfpagelabels=false
+]{hyperref}
+
+
+\hypersetup{pdftitle={Study for the Development of Lens Calibration Algorithm}, %nao suporta acentos
+   pdfkeywords ={palavras chave},
+   pdfsubject = {assunto},
+	bookmarksnumbered=true,
+   pdfauthor ={João Pedro da Silva Brito}, % see other options on manual (can be page) needs empty line on bibitem
+   plainpages=false, 
+   pdfborder={0 0 0},
+   colorlinks,%colorlinks=false,
+   breaklinks=true,
+	%linktocpage= false, make page number, not text, be link on TOC, LOF and LOT 
+	%hyperindex=true 	% Makes the page numbers of index entries into hyperlinks. Relays on unique page anchors (pageanchor) 
+% see for colors http://mirror.ctan.org/macros/latex/contrib/xcolor/xcolor.pdf
+   linkcolor= blue, %RedViolet, %MidnightBlue,% BlueViolet,%Sepia, % Color for normal internal links.
+   %anchorcolor=black,% Color for anchor text.
+   citecolor= blue,% Color for bibliographical citations in text.
+   %filecolor=cyan% Color for URLs which open local files.
+   %menucolor=red% Color for Acrobat menu items.
+   %runcolor=filecolor% Color for run links (launch annotations).
+   urlcolor=blue,% Color for linked URLs.
+}
+%use the same style for \url as the text
+% from http://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Customization
+\urlstyle{same}
+
+\makeatletter
+\renewcommand*{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else
+\thispagestyle{empty}
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+\usepackage{setspace}
+\setstretch{1.5}
+\usepackage{arydshln}
+\usepackage{pdfpages}
+\usepackage[super]{nth}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Study for the Development of Lens Calibration Algorithm},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+%\usepackage{emoji}
+\usepackage{tikz}
+\usepackage{graphicx}
+%\usepackage[table,xcdraw]{xcolor}
+\usepackage{lscape}
+\usepackage{booktabs}
+
+\newcommand{\red}{\tikz\draw[red,fill=red] (0,0) circle (1ex);}
+\newcommand{\yellow}{\tikz\draw[yellow,fill=yellow] (0,0) circle (1ex);}
+\newcommand{\green}{\tikz\draw[green,fill=green] (0,0) circle (1ex);}
+
+
+\begin{document}
+
+
+\includepdf[pages=1]{Chapters/thesis}
+\cleardoublepage
+\includepdf[pages=2]{Chapters/thesis}
+\cleardoublepage
+
+
+ % \quotepage{Random Usuário do Twitter}
+ % {Levanta a cabeça se não a coroa cai %\emoji{crown} 
+ % TEM QUE SE COMPILAR COM LUALATEX O EMOJI (VERIFICAR QUE NÃO ESTRAGA O RESTO DO DOC)}
+
+\beforepreface%
+
+\include{Chapters/00abs}
+
+%\dedicationpage{Dedico a \ldots}
+
+% end of thesis preamble
+\afterpreface%
+
+%% main tex here
+%% By putting the chapter names here, one can just comment the content in the chapters 
+%% and produce a pdf with the correct chapter number.
+%% If you want further configurability you can use subfiles package
+%% https://www.ctan.org/pkg/subfiles
+
+\include{Chapters/01intro}
+\include{Chapters/02stateart}
+\include{Chapters/03Edge_detection}
+\include{Chapters/04dof}
+\include{Chapters/05vibration}
+\include{Chapters/06interface}
+\include{Chapters/07conclusion}
+\include{Chapters/08annex}
+
+
+%% appendix
+\appendix
+%\include{Chapters/app1}
+
+%% references
+%\renewcommand{\bibname}{Referências} % o babel portuguese coloca Bibliografia
+% os meses do ficheiro bib poderão aparecer em inglês, caso se pretenda deve-se colocar o texto em português explicitamente no ficheiro bid
+\cleardoublepage%
+\phantomsection%
+\addcontentsline{toc}{chapter}{\bibname}
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{plainnaturlAppear} % use plainnaturlAppear to order references by appearance 
+% usually it is by author on thesis, to ease Author lookup
+\nocite{*}  % Include all entries in references.bib, not just the ones cited.
+\bibliography{references} %changed the env to make it a numbered chapter
+
+%% bye
+\end{document}
